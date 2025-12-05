@@ -43,7 +43,13 @@
   --chart-3: 262 83% 58%;
   --chart-4: 32 95% 44%;
   --chart-5: 340 82% 52%;
-  --font-sans: Open Sans, sans-serif;
+  --bubble-sent: 210 100% 52%;
+  --bubble-sent-foreground: 0 0% 100%;
+  --bubble-received: 0 0% 92%;
+  --bubble-received-foreground: 0 0% 9%;
+  --phone-frame: 0 0% 15%;
+  --phone-screen: 0 0% 98%;
+  --font-sans: Inter, system-ui, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
   --radius: .5rem;
@@ -127,6 +133,12 @@
   --chart-3: 262 83% 72%;
   --chart-4: 32 95% 65%;
   --chart-5: 340 82% 68%;
+  --bubble-sent: 210 100% 52%;
+  --bubble-sent-foreground: 0 0% 100%;
+  --bubble-received: 0 0% 25%;
+  --bubble-received-foreground: 0 0% 98%;
+  --phone-frame: 0 0% 12%;
+  --phone-screen: 0 0% 5%;
   --shadow-2xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
   --shadow-xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
   --shadow-sm: 0px 2px 0px 0px hsl(0 0% 0% / 0.00), 0px 1px 2px -1px hsl(0 0% 0% / 0.00);

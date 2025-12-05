@@ -81,6 +81,20 @@ export default {
           busy: "rgb(239 68 68)",
           offline: "rgb(156 163 175)",
         },
+        bubble: {
+          sent: {
+            DEFAULT: "hsl(var(--bubble-sent) / <alpha-value>)",
+            foreground: "hsl(var(--bubble-sent-foreground) / <alpha-value>)",
+          },
+          received: {
+            DEFAULT: "hsl(var(--bubble-received) / <alpha-value>)",
+            foreground: "hsl(var(--bubble-received-foreground) / <alpha-value>)",
+          },
+        },
+        phone: {
+          frame: "hsl(var(--phone-frame) / <alpha-value>)",
+          screen: "hsl(var(--phone-screen) / <alpha-value>)",
+        },
       },
       fontFamily: {
         sans: ["var(--font-sans)"],
