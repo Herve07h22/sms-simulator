@@ -1,21 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MessageSquarePlus, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ConversationEditor from "@/components/ConversationEditor";
 import PhonePreview from "@/components/PhonePreview";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 import type { Message, Sender, Participants } from "@/types/conversation";
 
 export default function Home() {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [participants, setParticipants] = useState<Participants>({
+  const [messages, setMessages] = useLocalStorage<Message[]>('sms-simulator-messages', []);
+  const [participants, setParticipants] = useLocalStorage<Participants>('sms-simulator-participants', {
     personA: "",
     personB: "",
   });
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('sms-simulator-theme') === 'dark';
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('sms-simulator-theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
 
   const toggleTheme = () => {
     setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
   };
 
   const handleAddMessage = (text: string, sender: Sender) => {
