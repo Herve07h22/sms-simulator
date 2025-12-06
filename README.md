@@ -7,13 +7,13 @@ Une application web statique React pour créer et prévisualiser des conversatio
 ### Installation
 
 ```bash
-npm install
+yarn
 ```
 
 ### Développement
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 L'application sera accessible sur `http://localhost:5173` (ou le port indiqué par Vite).
@@ -21,16 +21,11 @@ L'application sera accessible sur `http://localhost:5173` (ou le port indiqué p
 ### Build de production
 
 ```bash
-npm run build
+yarn build
 ```
 
 Les fichiers statiques seront générés dans le dossier `dist/`. Vous pouvez déployer ce dossier sur n'importe quel hébergeur de sites statiques (Netlify, Vercel, GitHub Pages, etc.).
 
-### Prévisualisation du build
-
-```bash
-npm run preview
-```
 
 ## 📁 Structure du projet
 
