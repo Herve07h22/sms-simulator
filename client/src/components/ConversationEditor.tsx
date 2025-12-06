@@ -55,7 +55,7 @@ export default function ConversationEditor({
             </p>
           </div>
         ) : (
-          <ScrollArea className="h-[calc(100vh-520px)] pr-2">
+          <ScrollArea className="pr-2">
             <div className="space-y-3">
               {messages.map((message, index) => (
                 <MessageItem

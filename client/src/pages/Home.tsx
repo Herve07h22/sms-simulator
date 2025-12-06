@@ -18,6 +18,7 @@ export default function Home() {
     }
     return false;
   });
+  const [phoneBgColor, setPhoneBgColor] = useLocalStorage<string>('sms-simulator-phone-bg-color', 'blue');
 
   useEffect(() => {
     if (isDark) {
@@ -76,8 +77,18 @@ export default function Home() {
     setParticipants({ personA: "", personB: "" });
   };
 
+  const colorOptions = [
+    { value: 'blue', label: 'Bleu', bgClass: 'bg-blue-200' },
+    { value: 'green', label: 'Vert', bgClass: 'bg-green-200' },
+    { value: 'purple', label: 'Violet', bgClass: 'bg-purple-200' },
+    { value: 'pink', label: 'Rose', bgClass: 'bg-pink-200' },
+    { value: 'orange', label: 'Orange', bgClass: 'bg-orange-200' },
+  ];
+
+  const selectedColor = colorOptions.find(c => c.value === phoneBgColor) || colorOptions[0];
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between gap-4 h-16">
@@ -110,7 +121,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 lg:px-8 py-6">
+      <main className="flex-1 max-w-7xl mx-auto px-4 lg:px-8 py-6 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="order-2 lg:order-1">
             <div className="lg:sticky lg:top-24">
@@ -129,28 +140,53 @@ export default function Home() {
 
           <div className="order-1 lg:order-2">
             <div className="lg:sticky lg:top-24">
-              <div className="flex items-center justify-center mb-4 lg:mb-0">
+              <div className="flex items-center justify-between mb-4">
                 <p className="text-sm text-muted-foreground lg:hidden">
                   Preview
                 </p>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground hidden sm:inline">Background color:</span>
+                  <div className="flex gap-1">
+                    {colorOptions.map((color) => (
+                      <button
+                        key={color.value}
+                        onClick={() => setPhoneBgColor(color.value)}
+                        className={`w-6 h-6 rounded-full border-2 transition-all ${
+                          phoneBgColor === color.value
+                            ? 'border-foreground scale-110'
+                            : 'border-transparent hover:border-muted-foreground/50'
+                        } ${color.bgClass}`}
+                        title={color.label}
+                        data-testid={`color-option-${color.value}`}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
-              <PhonePreview 
-                messages={messages} 
-                participants={{
-                  personA: participants.personA || "Friend",
-                  personB: participants.personB || "You"
-                }}
-              />
+              <div className={selectedColor.bgClass}>
+                <PhonePreview 
+                  messages={messages} 
+                  participants={{
+                    personA: participants.personA || "Friend",
+                    personB: participants.personB || "You"
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
       </main>
 
-      <footer className="border-t mt-12">
+      <footer className="border-t mt-auto">
         <div className="max-w-7xl mx-auto px-4 lg:px-8 py-6">
-          <p className="text-center text-sm text-muted-foreground">
-            Create and preview SMS-style conversations
-          </p>
+          <div className="text-center space-y-2">
+            <p className="text-sm text-muted-foreground">
+              <strong>SMS Chat Simulator</strong> is a free, browser-based tool that allows you to create and preview realistic SMS-style conversations between two people. Perfect for creating mockups, demonstrations, or educational content. All data is stored locally in your browser - no server, no database, completely private.
+            </p>
+            <p className="text-xs text-muted-foreground/80">
+              Create, edit, and customize your conversations with real-time preview. Change participant names, add messages, and export your conversations as needed.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
